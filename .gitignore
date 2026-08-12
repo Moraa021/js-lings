@@ -1,0 +1,4 @@
+node_modules/
+.jslings-state.json
+*.log
+.DS_Store
