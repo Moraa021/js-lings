@@ -1,4 +1,3 @@
-import puppeteer from 'puppeteer'
 import { join as joinPath, dirname, extname } from 'path'
 import { readFile, writeFile } from 'fs/promises'
 import { deepStrictEqual } from 'assert'
@@ -240,6 +239,7 @@ const prepareForDOM = ({ code }, server) => new Promise((s, f) => (server = http
   .listen(PORT, async listenErr => {
     if (listenErr) return f(listenErr)
     try {
+      const puppeteer = (await import('puppeteer')).default
       const browser = await puppeteer.launch(config)
       const [page] = await browser.pages()
       await page.goto(`http://localhost:${PORT}/index.html`)
