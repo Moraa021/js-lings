@@ -1,0 +1,60 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "JSLings: Watch Exercises (Interactive Mode)",
+      "command": "npm start",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "JSLings: Verify All Exercises",
+      "command": "npm run verify",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "JSLings: Test Current Exercise",
+      "command": "node jslings.js run ${fileBasenameNoExtension}",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "JSLings: Show Hint for Current Exercise",
+      "command": "node jslings.js hint ${fileBasenameNoExtension}",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "JSLings: Reset Current Exercise",
+      "command": "node jslings.js reset ${fileBasenameNoExtension}",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

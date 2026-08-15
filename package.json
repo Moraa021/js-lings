@@ -1,0 +1,29 @@
+{
+  "name": "jslings",
+  "version": "1.0.0",
+  "description": "Interactive JavaScript practice environment inspired by Rustlings for VS Code and terminal",
+  "main": "jslings.js",
+  "type": "module",
+  "bin": {
+    "jslings": "./jslings.js"
+  },
+  "scripts": {
+    "start": "node jslings.js watch",
+    "watch": "node jslings.js watch",
+    "list": "node jslings.js list",
+    "verify": "node jslings.js verify",
+    "test": "node jslings.js run",
+    "hint": "node jslings.js hint",
+    "reset": "node jslings.js reset"
+  },
+  "keywords": [
+    "javascript",
+    "practice",
+    "rustlings",
+    "learning",
+    "vscode",
+    "exercises"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}
