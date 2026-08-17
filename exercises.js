@@ -3,7 +3,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const PISCINE_DIR = '/home/blaq/piscine/public/subjects'
+const SUBJECTS_DIR = path.join(__dirname, 'subjects')
+const TESTS_DIR = path.join(__dirname, 'tests')
 
 export const ROOT_EXERCISES = [
   { id: 'array-chunk-reversal', name: 'array-chunk-reversal', category: 'Arrays', folder: 'js-array-chunk-reversal', hint: 'Slice array into chunk sizes and reverse each subarray.' },
@@ -42,12 +43,11 @@ export const ROOT_EXERCISES = [
 export function getAllExercises() {
   const exercises = [...ROOT_EXERCISES]
 
-  // Add piscine exercises if available
-  if (fs.existsSync(PISCINE_DIR)) {
-    const piscineSubjects = fs.readdirSync(PISCINE_DIR)
-    const testFiles = fs.existsSync(path.join(__dirname, 'tests')) ? fs.readdirSync(path.join(__dirname, 'tests')) : []
+  if (fs.existsSync(SUBJECTS_DIR)) {
+    const localSubjects = fs.readdirSync(SUBJECTS_DIR)
+    const testFiles = fs.existsSync(TESTS_DIR) ? fs.readdirSync(TESTS_DIR) : []
 
-    for (const subject of piscineSubjects) {
+    for (const subject of localSubjects) {
       if (exercises.some(e => e.id === subject || e.name === subject)) continue
 
       let testFile = null
@@ -60,9 +60,9 @@ export function getAllExercises() {
           id: subject,
           name: subject,
           category: 'Piscine Subjects',
-          folder: path.join(PISCINE_DIR, subject),
-          isPiscine: true,
-          hint: `Read instructions in ${path.join(PISCINE_DIR, subject, 'README.md')}`
+          folder: path.join('subjects', subject),
+          isLocalSubject: true,
+          hint: `Read instructions in ${path.join('subjects', subject, 'README.md')}`
         })
       }
     }
@@ -72,28 +72,24 @@ export function getAllExercises() {
 }
 
 export function getExerciseSolutionPath(exercise) {
-  if (!exercise.isPiscine) {
-    const dir = path.join(__dirname, exercise.folder)
-    const possibleFiles = [
-      path.join(dir, `${exercise.name}.js`),
-      path.join(dir, 'index.js'),
-      path.join(dir, 'solution.js')
-    ]
-    for (const f of possibleFiles) {
-      if (fs.existsSync(f)) return f
-    }
-    return path.join(dir, `${exercise.name}.js`)
-  } else {
-    // For piscine exercises, look in working dir or piscine subject dir
-    const localDir = path.join(__dirname, 'piscine-solutions', exercise.name)
-    if (!fs.existsSync(localDir)) {
-      fs.mkdirSync(localDir, { recursive: true })
-    }
-    const ext = exercise.name.endsWith('-dom') ? 'js' : 'js'
-    const solFile = path.join(localDir, `${exercise.name}.${ext}`)
-    if (!fs.existsSync(solFile)) {
-      fs.writeFileSync(solFile, `// Exercise: ${exercise.name}\n// Write your solution here\n`, 'utf8')
-    }
-    return solFile
+  const dir = path.join(__dirname, exercise.folder)
+  const possibleFiles = [
+    path.join(dir, `${exercise.name}.js`),
+    path.join(dir, `${exercise.name}.mjs`),
+    path.join(dir, 'index.js'),
+    path.join(dir, 'solution.js')
+  ]
+
+  for (const f of possibleFiles) {
+    if (fs.existsSync(f)) return f
   }
+
+  const defaultSolPath = path.join(dir, `${exercise.name}.js`)
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true })
+  }
+  if (!fs.existsSync(defaultSolPath)) {
+    fs.writeFileSync(defaultSolPath, `// Exercise: ${exercise.name}\n// Write your solution here\n`, 'utf8')
+  }
+  return defaultSolPath
 }
