@@ -63,12 +63,7 @@ function printProgressBar(completedCount, totalCount) {
 }
 
 function getReadmeInstructions(exercise) {
-  let readmePath = null
-  if (!exercise.isPiscine) {
-    readmePath = path.join(__dirname, exercise.folder, 'README.md')
-  } else {
-    readmePath = path.join(exercise.folder, 'README.md')
-  }
+  const readmePath = path.join(__dirname, exercise.folder, 'README.md')
 
   if (fs.existsSync(readmePath)) {
     try {
