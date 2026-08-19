@@ -142,15 +142,15 @@ async function watchMode() {
     isTesting = false
 
     if (result.success) {
-      console.log(`${styles.green}${styles.bold}✓ PASS:${styles.reset} All tests passed for ${exercise.name}!`)
+      console.log(`${styles.green}${styles.bold}[PASS]:${styles.reset} All tests passed for ${exercise.name}!`)
       if (!completedSet.has(exercise.id)) {
         completedSet.add(exercise.id)
         state.completed = Array.from(completedSet)
         saveState(state)
-        console.log(`${styles.green}🎉 Exercise completed! Progress saved.${styles.reset}`)
+        console.log(`${styles.green}[SUCCESS] Exercise completed! Progress saved.${styles.reset}`)
       }
     } else {
-      console.log(`${styles.red}${styles.bold}✗ FAIL:${styles.reset} Tests failing for ${exercise.name}:`)
+      console.log(`${styles.red}${styles.bold}[FAIL]:${styles.reset} Tests failing for ${exercise.name}:`)
       console.log(`${styles.red}${result.output}${styles.reset}`)
     }
 
@@ -209,7 +209,7 @@ async function watchMode() {
       renderCurrentExercise()
     } else if (char === 'h') {
       const ex = exercises[currentIndex]
-      console.log(`\n${styles.yellow}${styles.bold}💡 HINT:${styles.reset} ${ex.hint || 'No specific hint available.'}`)
+      console.log(`\n${styles.yellow}${styles.bold}HINT:${styles.reset} ${ex.hint || 'No specific hint available.'}`)
     } else if (char === 'l') {
       listExercises()
     } else if (char === 'q') {
@@ -232,8 +232,8 @@ function listExercises() {
   console.log(`${styles.bold}Available Exercises:${styles.reset}\n`)
   exercises.forEach((ex, idx) => {
     const isDone = completedSet.has(ex.id)
-    const icon = isDone ? `${styles.green}[✓]${styles.reset}` : `${styles.red}[ ]${styles.reset}`
-    const isCurrent = idx === state.currentIndex ? `${styles.cyan}➔ ${styles.reset}` : '  '
+    const icon = isDone ? `${styles.green}[X]${styles.reset}` : `${styles.red}[ ]${styles.reset}`
+    const isCurrent = idx === state.currentIndex ? `${styles.cyan}> ${styles.reset}` : '  '
     console.log(`${isCurrent}${icon} ${String(idx + 1).padStart(3, ' ')}. ${styles.bold}${ex.name.padEnd(28, ' ')}${styles.reset} (${ex.category})`)
   })
 
@@ -277,7 +277,7 @@ function showHint(name) {
     if (found) target = found
   }
 
-  console.log(`\n${styles.yellow}${styles.bold}💡 HINT for ${target.name}:${styles.reset} ${target.hint}\n`)
+  console.log(`\n${styles.yellow}${styles.bold}HINT for ${target.name}:${styles.reset} ${target.hint}\n`)
 }
 
 function resetExercise(name) {
