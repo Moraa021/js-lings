@@ -20,13 +20,27 @@ Or run the default VS Code test task with **`Ctrl+Shift+B`** (Cmd+Shift+B on mac
 
 ---
 
+## Exercise Progression & Concept Categories
+
+Exercises are organized in concept subdirectories within [`exercises/`](file:///home/blaq/JavaScript-Practice/exercises). Solving exercises follows a progressive order, building from foundational concepts up to multi-concept capstones:
+
+1. **`01_primitives_and_types`**: Fundamental types, booleans, numbers, strings, primitive checks, and type conversions.
+2. **`02_control_flow_and_loops`**: Conditionals, loops (`for`, `while`), iterations, and elementary math recursion.
+3. **`03_data_structures_arrays_and_objects`**: Array transformations, object property manipulation, nested structures, and deep access.
+4. **`04_functional_programming`**: Higher-order functions, `map`, `filter`, `reduce`, currying, and pure pipeline composition.
+5. **`05_async_and_promises`**: Promises, `async`/`await`, timers, retries, and race conditions.
+6. **`06_algorithms_and_grid_processing`**: Sorting algorithms, grid searching, matrix validation, regex, and string parsing.
+7. **`07_capstones_and_multi_concept`**: Advanced multi-concept capstones combining objects, functional pipelines, async loops, proxies, and DOM interactions.
+
+---
+
 ## Features
 
-- **Unified Local Layout**: All exercises live inside [`exercises/`](file:///home/blaq/JavaScript-Practice/exercises) and all tests live inside [`tests/`](file:///home/blaq/JavaScript-Practice/tests).
+- **Progressive Concept Order**: Exercises are structured sequentially by difficulty and target concept.
+- **Dedicated Capstone Category**: Multi-concept exercises are isolated in `07_capstones_and_multi_concept`.
 - **Live File Watcher**: Automatically re-runs tests instantly whenever you save your solution file.
-- **Progress Bar & Tracker**: Visual completion progress bar saved in real-time.
+- **Progress Tracker**: Visual completion progress bar saved in real-time.
 - **Interactive Hints & Reset**: Get instant hints with `h` or reset exercises with `r`.
-- **230+ Exercises**: Covers 31 core practice tasks (arrays, objects, algorithms, async, functional programming) + 200+ Piscine subjects!
 - **VS Code Integration**: Built-in `.vscode/tasks.json` and `.vscode/settings.json` for seamless developer experience.
 
 ---
